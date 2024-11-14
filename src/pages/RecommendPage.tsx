@@ -1,30 +1,43 @@
+import React from "react";
 import Button from "../components/atoms/Button";
 import ButtonGotoTop from "../components/atoms/ButtonGotoTop";
 import HealthCategoryItem from "../components/atoms/HealthCategoryItem";
 import RecommendSectionItem from "../components/atoms/RecommendSectionItem";
 import { dataHealthCategories } from "../mocks/data";
+const sections = [
+	{
+		title: "RECOMMENDED COLUMN",
+		description: "オススメ",
+		hashtags: ["オススメ"],
+	},
+	{
+		title: "RECOMMENDED DIET",
+		description: "ダイエット",
+	},
+	{
+		title: "RECOMMENDED BEAUTY",
+		description: "美容",
+	},
+	{
+		title: "RECOMMENDED HEALTH",
+		description: "健康",
+	},
+];
 
 const RecommendPage = () => {
-	const sections = [
-		{
-			title: "RECOMMENDED COLUMN",
-			description: "オススメ",
-			hashtags: ["オススメ"],
-		},
-		{
-			title: "RECOMMENDED DIET",
-			description: "ダイエット",
-      
-		},
-		{
-			title: "RECOMMENDED BEAUTY",
-			description: "美容",
-		},
-		{
-			title: "RECOMMENDED HEALTH",
-			description: "健康",
-		},
-	];
+	const [data, setData] = React.useState(dataHealthCategories);
+	const [, setPage] = React.useState(1);
+
+	const handleShowMoreData = async () => {
+		// Fetch next page of data
+		const newData = dataHealthCategories;
+
+		// Update state by appending new data
+		if (newData.length > 0) {
+			setData((prevData) => [...prevData, ...newData]);
+			setPage((prevPage) => prevPage + 1); // Increment page number for the next request
+		}
+	};
 
 	return (
 		<div>
@@ -44,12 +57,14 @@ const RecommendPage = () => {
 						<ButtonGotoTop />
 					</div>
 					<div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2'>
-						{dataHealthCategories.map((item) => (
+						{data.map((item) => (
 							<HealthCategoryItem key={item.date} {...item} />
 						))}
 					</div>
 				</div>
-				<Button className='w-[296px] m-auto'>記録をもっと見る</Button>
+				<Button onClick={handleShowMoreData} className='w-[296px] m-auto'>
+					記録をもっと見る
+				</Button>
 			</div>
 		</div>
 	);

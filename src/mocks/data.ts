@@ -75,42 +75,48 @@ export const dataDiaries = [
 	},
 ];
 
-export const dataTops = {
-	morning: [
-		{
-			thumbnail: ImageM1,
-			title: "05.21.Morning",
-		},
-		{
-			thumbnail: ImageL3,
-			title: "05.21.Lunch",
-		},
-		{
-			thumbnail: ImageD1,
-			title: "05.21.Dinner",
-		},
-		{
-			thumbnail: ImageL1,
-			title: "05.21.Snack",
-		},
-		{
-			thumbnail: ImageM1,
-			title: "05.20.Morning",
-		},
-		{
-			thumbnail: ImageL2,
-			title: "05.20.Lunch",
-		},
-		{
-			thumbnail: ImageD2,
-			title: "05.20.Dinner",
-		},
-		{
-			thumbnail: ImageS1,
-			title: "05.21.Snack",
-		},
-	],
-};
+export const dataTops = [
+	{
+		thumbnail: ImageM1,
+		title: "05.21.Morning",
+		category: "morning",
+	},
+	{
+		thumbnail: ImageL3,
+		title: "05.21.Lunch",
+		category: "lunch",
+	},
+	{
+		thumbnail: ImageD1,
+		title: "05.21.Dinner",
+		category: "dinner",
+	},
+	{
+		thumbnail: ImageL1,
+		title: "05.21.Snack",
+		category: "snack",
+	},
+	{
+		thumbnail: ImageM1,
+		title: "05.20.Morning",
+		category: "morning",
+	},
+	{
+		thumbnail: ImageL2,
+		title: "05.20.Lunch",
+		category: "lunch",
+	},
+	{
+		thumbnail: ImageD2,
+		title: "05.20.Dinner",
+		category: "dinner",
+	},
+	{
+		thumbnail: ImageS1,
+		title: "05.21.Snack",
+		category: "snack",
+	},
+];
 
 export const dataHealthCategories = [
 	{

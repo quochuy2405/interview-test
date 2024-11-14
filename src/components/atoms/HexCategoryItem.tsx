@@ -1,14 +1,36 @@
 import React, { PropsWithChildren, ReactNode } from "react";
+import { useSearchParams } from "react-router-dom";
 
 type HexCategoryItemProps = React.HTMLAttributes<HTMLDivElement> &
 	PropsWithChildren & {
 		icon: ReactNode;
 		label: string;
+		value: string;
 	};
 
-const HexCategoryItem: React.FC<HexCategoryItemProps> = ({ icon, label, ...props }) => {
+const HexCategoryItem: React.FC<HexCategoryItemProps> = ({ icon, label, value, ...props }) => {
+	const [searchParams, setSearchParams] = useSearchParams();
+	// Handle the click to update the search parameters
+	const handleClick = () => {
+		if (searchParams.get("filter") === value) {
+			setSearchParams((prevParams) => {
+				const newParams = new URLSearchParams(prevParams);
+				newParams.delete("filter"); // Update or set the 'category' query parameter
+				return newParams;
+			});
+			return;
+		}
+		setSearchParams((prevParams) => {
+			const newParams = new URLSearchParams(prevParams);
+			newParams.set("filter", value); // Update or set the 'category' query parameter
+			return newParams;
+		});
+	};
 	return (
-		<div className='relative cursor-pointer w-[136px] h-[136px] flex justify-center items-center' {...props}>
+		<div
+			onClick={handleClick}
+			className='relative cursor-pointer w-[136px] h-[136px] flex justify-center items-center'
+			{...props}>
 			<div className='absolute w-full h-full z-10 flex items-center justify-center flex-col p-2 top-0'>
 				<div className='w-14 h-14'>{icon}</div>
 				<p className='font-normal text-xl leading-5 text-white'>{label}</p>
